@@ -12,10 +12,10 @@ target="_blank">
         alt="movie poster" className="movie_poster" />
     
     <div className="movie_details">
-    <h3 className="movie_details_heading">{movie.original_title}</h3>
-    <div className="movie_date_rate">
+    <h3 className=" movie_details_heading">{movie.original_title}</h3>
+    <div className="align_center movie_date_rate">
       <p>{movie.release_date}</p>
-      <p>{movie.rate_average} <img src={Star} alt="rating" 
+      <p className="align_center">{movie.vote_average} <img src={Star} alt="rating" 
       className="card_emoji" /> </p>
     </div>
     <p className="movie_description">{movie.overview.slice(0, 100) + "..."}</p>
