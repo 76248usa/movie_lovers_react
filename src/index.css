@@ -1,0 +1,19 @@
+@font-face{
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat.woff2")
+}
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #101010;
+  color: #fff;
+  font-family: 'Exo 2', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
