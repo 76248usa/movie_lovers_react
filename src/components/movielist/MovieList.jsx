@@ -1,12 +1,13 @@
 import React from 'react'
 import './MovieList.css'
 import MovieCard from './MovieCard'
-import Fire from '../../assets/fire.png'
-import Party from '../../assets/partying-face.png'
+
 import { useEffect } from 'react'
 import { useState } from 'react'
+import _ from 'lodash'
 
-function MovieList() {
+
+function MovieList({type, title, emoji}) {
   const [movies, setMovies] = useState([])
   const [minRating, setMinRating] = useState(0)
   const [filterMovies, setFilterMovies] = useState([]);
@@ -15,14 +16,21 @@ function MovieList() {
     order: "asc"
   })
 
+
   useEffect(() => {
    fetchMovies();
     
   }, [])
+  useEffect(() => {
+    if(sort.by !== "default"){
+       const sortedMovies =  _.orderBy(filterMovies, [sort.by], [sort.order])
+       setFilterMovies(sortedMovies)
+    }
+  }, [sort])
 
   const fetchMovies = async () => {
      const response = await fetch
-     ('https://api.themoviedb.org/3/movie/popular?api_key=a05f6cb59b30707db27e3393002f2699')
+     (`https://api.themoviedb.org/3/movie/${type}?api_key=a05f6cb59b30707db27e3393002f2699`)
      const data = await response.json();
      setMovies(data.results)
      setFilterMovies(data.results)  
@@ -43,14 +51,14 @@ function MovieList() {
     const {name, value} = e.target;
     setSort(prev => ({...prev, [name]: value}))
   }
-   console.log(sort)
+   //console.log(sort)
   
   return (
-<section className='movie_list'>
+<section className='movie_list' id={type} >
             <header className='align_center movie_list_header'>
                 <h2 className='align_center movie_list_heading'>
-                    Popular{" "}
-                    <img src={Fire} alt='fire emoji' className='navbar_emoji' />
+                    {title}{" "}
+                    <img src={emoji} alt={`${emoji} icon`} className='navbar_emoji' />
                 </h2>
 
                 <div className='align_center movie_list_fs'>
